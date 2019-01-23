@@ -162,7 +162,7 @@
                     <div class="form-group">
                         <label for="maxHumiditySensor">Maksymalnny poziom wilgotności</label>
                         <input type="number" class="form-control" name="maxHumiditySensor" [(ngModel)]="newHumiditySensor.maxValue" #maxHumiditySensor="ngModel" [ngClass]="{ 'is-invalid': humidityForm.submitted && maxHumiditySensor.invalid }" required />
-                        <div *ngIf="smokeForm.submitted && maxHumiditySensor.invalid" class="invalid-feedback">
+                        <div *ngIf="humidityForm.submitted && maxHumiditySensor.invalid" class="invalid-feedback">
                             <div *ngIf="maxHumiditySensor.errors.required" class="text-danger">Wymagane jest podanie liczby</div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
         </div>
     </div>
 
-</div>
+</div> 
 </div>
 
 <div class="text-center">

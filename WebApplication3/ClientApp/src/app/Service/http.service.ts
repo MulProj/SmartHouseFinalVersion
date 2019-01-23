@@ -53,13 +53,13 @@ export class HttpService {
   getMotionHistoryByHouseId(houseId: number, dataAmount: number):Observable<Array<Sensor>>{
     return this.http.get<Array<Sensor>>('https://localhost:5001/api/sensorhistories/getmotionsensorsbyhouseid?houseid='+houseId+ '&dataAmount='+dataAmount)
   }
-  updateTemperatureSensor(sensor: Sensor):Observable<Sensor>{
+  updateTemperatureSensor(sensor: TemperatureSensor):Observable<TemperatureSensor>{
     return this.http.post('https://localhost:5001/api/Sensors/UpdateTemperatureSensor', sensor)
   }
-  updateHumiditySensor(sensor: Sensor):Observable<Sensor>{
+  updateHumiditySensor(sensor: HumiditySensor):Observable<HumiditySensor>{
     return this.http.post('https://localhost:5001/api/Sensors/UpdateHumiditySensor', sensor)
   }
-  updateSmokeSensor(sensor: Sensor):Observable<Sensor>{
+  updateSmokeSensor(sensor: SmokeSensor):Observable<SmokeSensor>{
     return this.http.post('https://localhost:5001/api/Sensors/UpdateSmokeSensor', sensor)
   }
   updateMotionSensor(sensor: Sensor):Observable<Sensor>{

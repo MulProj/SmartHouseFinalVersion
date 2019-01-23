@@ -18,6 +18,7 @@ import { SensorsLayoutComponent } from './all-houses/sensors-layout/sensors-layo
 import { ViewSensorsComponent } from './all-houses/view-sensors/view-sensors.component';
 import { HistoryComponent } from './all-houses/history/history.component';
 import {ChartsModule} from 'ng2-charts';
+import { EditSensorComponent } from './all-houses/edit-sensor/edit-sensor.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ChartsModule} from 'ng2-charts';
     SensorsLayoutComponent,
     ViewSensorsComponent,
     HistoryComponent,
+    EditSensorComponent,
     
   ],
   imports: [

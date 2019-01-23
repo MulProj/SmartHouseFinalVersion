@@ -76,7 +76,7 @@ motionSensor = new Image
 
   numberTemperatureSensor: number
   newHumiditySensor : HumiditySensor = new HumiditySensor();
-  newTemperatureSensor : TemperatureSensor = new TemperatureSensor();
+  newTemperatureSensor : TemperatureSensor = new TemperatureSensor(); 
   newSmokeSensor : SmokeSensor = new SmokeSensor();
   newMotionSensor : MotionSensor = new MotionSensor();
 
@@ -120,21 +120,6 @@ motionSensor = new Image
       error=>{}) 
       this.humidityForm.resetForm();
   }
-
-
-
-/************************************************8 */
-
-
-
-
-//sensors$
-
-
-
-
-
-
 load()
 {
   this.temperatureSensors$.subscribe(sensors =>{
