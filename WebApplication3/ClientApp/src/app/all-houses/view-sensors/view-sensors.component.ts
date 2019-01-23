@@ -138,6 +138,7 @@ export class ViewSensorsComponent implements OnInit {
                   })
                   this.temperatureSensors.push(temperatureSensor);
                 }
+
               this.temperatureSensors[this.temperatureCounter].sensorId = sensors[i].sensorId;
               this.temperatureSensors[this.temperatureCounter].minValue = sensors[i].minValue;
               this.temperatureSensors[this.temperatureCounter].maxValue = sensors[i].maxValue;
@@ -149,6 +150,7 @@ export class ViewSensorsComponent implements OnInit {
               this.temperatureSensors[this.temperatureCounter].coordinateY = sensors[i].coordinateY;
               
               this.temperatureCounter++;
+                
             }
             else if (sensors[i].type == "Humidity") {
 
@@ -308,10 +310,14 @@ export class ViewSensorsComponent implements OnInit {
     
     this.httpService.delSensor(id).subscribe(
       success=>{
+        this.sensors$ = this.httpService.getSensorsByHouseId(this.houseId);
+        console.log(this.temperatureSensorNumber);
+        if((this.temperatureSensorNumber--)==0)
+          this.ngOnInit()
       },
       error =>{}
     );
-    this.sensors$ = this.httpService.getSensorsByHouseId(this.houseId);
+    
   }
 
  

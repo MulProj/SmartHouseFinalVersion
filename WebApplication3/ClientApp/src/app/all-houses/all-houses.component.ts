@@ -113,6 +113,7 @@ allHouses$: Observable<Array<House>>
         success=>{
 
           this.allHouses$ = this.httpService.getHouses()
+          
         },
         error=>{console.log(error)}
       ); 
