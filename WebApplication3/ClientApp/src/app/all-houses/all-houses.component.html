@@ -21,26 +21,32 @@
         <td>{{h.description}}</td>
         <td>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-primary" (click)="addSensorOption(h.houseId)">Dodaj czujniki</button>
+              <button type="button" class="btn btn-primary" (click)="addSensorOption(h.houseId, h.plan)">Dodaj czujniki</button>
               <button type="button" class="btn btn-primary" (click)="statusSensorOption(h.houseId)">Stan czujników</button>
               <button type="button" class="btn btn-primary" (click)="history(h.houseId)">Historia</button>
               <button type="button" class="btn btn-danger" (click)="delHouse(h.houseId)">Usuń dom</button>     
             </div> 
         </td>
       </tr>
-      <tr *ngIf="selectedHouse == h.houseId && operacja !=0"> 
+      <tr>
         <td colspan="7">
-          <div *ngIf="operacja ==0"></div>
-          <div *ngIf="operacja ==1"><app-add-sensors [houseId]="h.houseId" [plan]="h.image"></app-add-sensors></div>
-          <div *ngIf="operacja ==2"><app-view-sensors [houseId]="h.houseId"></app-view-sensors></div>
-          <div *ngIf="operacja ==3"><app-history [houseId]="h.houseId"></app-history></div>
-         
+            <div *ngIf="selectedHouse == h.houseId && operacja !=0"> 
+                <div *ngIf="operacja ==0"></div>
+                <div *ngIf="operacja ==1"><app-add-sensors [houseId]="h.houseId" [plan]="h.image"></app-add-sensors></div>
+                <div *ngIf="operacja ==2"><app-view-sensors [houseId]="h.houseId"></app-view-sensors></div>
+                <div *ngIf="operacja ==3"><app-history [houseId]="h.houseId"></app-history></div>
+            </div> 
         </td>
-      </tr> 
+      </tr>
+    
     
  
     </tbody>
   </table>
+
+
+
+
 
 
 

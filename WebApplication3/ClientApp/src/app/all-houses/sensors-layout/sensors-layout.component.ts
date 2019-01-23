@@ -2,6 +2,7 @@ import { Component, OnInit, Output, ViewChild, ElementRef, HostListener, SimpleC
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpService } from '../../Service/http.service';
 import { MotionSensor, SmokeSensor, HumiditySensor, TemperatureSensor } from 'src/app/app.component';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-sensors-layout',

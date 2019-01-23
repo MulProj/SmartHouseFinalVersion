@@ -41,6 +41,8 @@ export class AddSensorsComponent{
   index:number;
   type: string;
 
+  cnt: number = 0;
+
 
 temperatureSensor =new Image
 humiditySensor = new Image
@@ -50,25 +52,22 @@ motionSensor = new Image
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
+    console.log(this.houseId);
     this.temperatureSensor.src="../../../assets/sensor/temp.png";
     this.humiditySensor.src="../../../assets/sensor/hum.png";
     this.smokeSensor.src="../../../assets/sensor/smoke.png";
     this.motionSensor.src="../../../assets/sensor/move.png";
     
-    
     this.ctx = (<HTMLCanvasElement>this.canvas.nativeElement).getContext('2d');
+    
+    // this.ctx = (<HTMLCanvasElement>this.canvas.nativeElement).getContext('2d');
     this.temperatureSensors$ = this.httpService.getTemperatureSensorsByHouseId(this.houseId)
     this.smokeSensors$ = this.httpService.getSmokeSensorsByHouseId(this.houseId);
     this.humiditySensors$ = this.httpService.getHumiditySensorsByHouseId(this.houseId);
     this.motionSensors$ = this.httpService.getMotionSensorsByHouseId(this.houseId);
-    
     this.load();
-    this.drawSensors(); 
-    }
+    
 
-    ngAfterViewInit(): void {
-      this.ctx = (<HTMLCanvasElement>this.canvas.nativeElement).getContext('2d');
-      this.load();
     }
 
 
@@ -79,9 +78,10 @@ motionSensor = new Image
   newTemperatureSensor : TemperatureSensor = new TemperatureSensor(); 
   newSmokeSensor : SmokeSensor = new SmokeSensor();
   newMotionSensor : MotionSensor = new MotionSensor();
-
+  houseImage: string;
   addTempSensor(ts: TemperatureSensor)
   {
+    this.saveSensors();
     ts.coordinateX=10;
     ts.coordinateY=10;
     ts.houseId=this.houseId;
@@ -89,9 +89,14 @@ motionSensor = new Image
       success=>{this.load();},
       error=>{})  
       this.tempForm.resetForm(); 
+     // this.drawSensors();
+     this.load();
+
+
   }
   addMotionSensor(ms : MotionSensor)
   {
+    this.saveSensors();
     ms.coordinateX=10;
     ms.coordinateY=10;
     ms.houseId=this.houseId;
@@ -102,6 +107,7 @@ motionSensor = new Image
   }
   addSmokeSensor(ss: SmokeSensor)
   {
+    this.saveSensors();
     ss.coordinateX= 10;
     ss.coordinateY=10;
     ss.houseId=this.houseId;
@@ -112,6 +118,7 @@ motionSensor = new Image
   }
   addHumiditySensor(hs: HumiditySensor)
   {
+    this.saveSensors();
     hs.coordinateX=10;
     hs.coordinateY=10;
     hs.houseId=this.houseId;
@@ -153,7 +160,10 @@ load()
       this.temperatureSensors[i].houseId= sensors[i].houseId;
   
     }
-    this.drawTemperatureSensors();
+    // this.drawTemperatureSensors();
+    // this.drawSensors(); 
+
+    this.check();
   })
   
   this.smokeSensors$.subscribe(sensors =>{
@@ -187,7 +197,10 @@ load()
   
   
     }
-    this.drawSmokeSensors();
+    // this.drawSensors(); 
+    this.check();
+
+    // this.drawSmokeSensors();
   })
   
   this.humiditySensors$.subscribe(sensors =>{
@@ -220,7 +233,10 @@ load()
       this.humiditySensors[i].houseId= sensors[i].houseId;
   
       }
-      this.drawHumiditySensors();
+      // this.drawSensors(); 
+      this.check();
+
+      // this.drawHumiditySensors();
   })
   
   this.motionSensors$.subscribe(sensors =>{
@@ -254,14 +270,25 @@ load()
     this.motionSensors[i].houseId= sensors[i].houseId;
   
     }
-    this.drawMotionSensors();
+    // this.drawSensors(); 
+    this.check();
+
+    // this.drawMotionSensors();
   })
 
 }
 
+check() {
+  this.cnt++;
+  console.log(this.cnt)
+  if(this.cnt == 4) {
+    this.drawSensors();
+    this.cnt=0;
+  }
+}
 
-@HostListener('dblclick' ['$event'])
-onDblClick(event: MouseEvent)
+@HostListener('mouseout' ['$event'])
+onmouseout(event: MouseEvent)
 {
   console.log("2x");
 }
@@ -307,6 +334,7 @@ onmousedown()
 {
   if(this.inSensors())
   {
+    this.drawSensors();
     this.drag=true;
     switch(this.type){
       case "Temperature": { 

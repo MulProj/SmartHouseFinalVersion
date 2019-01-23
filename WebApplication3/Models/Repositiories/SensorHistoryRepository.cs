@@ -35,8 +35,17 @@ namespace WebApplication3.Models.Repositiories
                 IsOn = sensor.IsOn
             };
 
-            _databaseContext.SensorHistories.Add(sensorHistory);
-            _databaseContext.SaveChanges();
+            try
+            {
+                _databaseContext.SensorHistories.Add(sensorHistory);
+                _databaseContext.SaveChanges();
+            }
+
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+            
 
             return sensorHistory.SensorHistoryId;
         }
@@ -58,8 +67,17 @@ namespace WebApplication3.Models.Repositiories
                 IsOn = sensor.IsOn
             };
 
-            _databaseContext.SensorHistories.Add(sensorHistory);
-            _databaseContext.SaveChanges();
+            try
+            {
+                _databaseContext.SensorHistories.Add(sensorHistory);
+                _databaseContext.SaveChanges();
+            }
+
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+           
             
             return sensorHistory.SensorHistoryId;
         }
@@ -81,9 +99,17 @@ namespace WebApplication3.Models.Repositiories
                 IsOn = sensor.IsOn
             };
 
-            _databaseContext.SensorHistories.Add(sensorHistory);
-            _databaseContext.SaveChanges();
+            try
+            {
+                _databaseContext.SensorHistories.Add(sensorHistory);
+                _databaseContext.SaveChanges();
+            }
 
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+        
             return sensorHistory.SensorHistoryId;
         }
 
@@ -104,9 +130,17 @@ namespace WebApplication3.Models.Repositiories
                 IsOn = sensor.IsOn
             };
 
-            _databaseContext.SensorHistories.Add(sensorHistory);
-            _databaseContext.SaveChanges();
+            try
+            {
+                _databaseContext.SensorHistories.Add(sensorHistory);
+                _databaseContext.SaveChanges();
+            }
 
+            catch (Exception exp)
+            {
+                Console.WriteLine(exp.Message);
+            }
+      
             return sensorHistory.SensorHistoryId;
         }
 

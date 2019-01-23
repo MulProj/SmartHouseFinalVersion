@@ -16,7 +16,8 @@ export class AllHousesComponent implements OnInit{
 
 
   
-
+houseId: number;
+image: string;
 selectedHouse: number;
 lastOperationHouse: number = null;
 lastOperationNumber:number=null;
@@ -30,8 +31,11 @@ allHouses$: Observable<Array<House>>
      this.allHouses$ = this.httpService.getHouses()
     }
 
-    addSensorOption(houseId)
+    addSensorOption(houseId, plan)
     {
+      this.houseId=houseId;
+      this.image=plan;
+      
       this.selectedHouse=houseId
       if( this.lastOperationHouse==this.selectedHouse)
       {

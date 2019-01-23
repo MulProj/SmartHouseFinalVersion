@@ -236,7 +236,7 @@ export class ViewSensorsComponent implements OnInit {
       else {
         this.timeLeft = 60;
       }
-    }, 3000)
+    },1000)
 
     
  
@@ -305,12 +305,13 @@ export class ViewSensorsComponent implements OnInit {
 
   delSensor( id: number)
   {
+    
     this.httpService.delSensor(id).subscribe(
       success=>{
-        this.ngOnInit();
       },
       error =>{}
     );
+    this.sensors$ = this.httpService.getSensorsByHouseId(this.houseId);
   }
 
  
